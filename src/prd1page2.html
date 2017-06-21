@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>购买产品</title>
+    <style>
+        header {
+            border-bottom: 1px solid #ccc;
+        }
+        .center {
+            text-align: center;
+        }
+        .leftbtn,.rightbtn{
+            font-size: 16px;
+            float: left;
+            width: 40px;
+            height: 40px;
+            color: #f37937;
+        }
+        .rightbtn {
+            float: right;
+        }
+    </style>
+</head>
+<script src="./browser-back.js"></script>
+
+<script>
+    let letfFun = function () {
+      location.href = './prd1page1.html'
+    };
+    normalBrowserBack(letfFun);
+</script>
+<body>
+<header>
+    <div class="leftbtn" onclick="history.back()">返回</div>
+    <div class="rightbtn"></div>
+    <div class="center">购买产品</div>
+</header>
+<p>这是产品1购买页面</p>
+<a href="./prd1page3.html">进入产品购买完成结果页面</a>
+</body>
+</html>

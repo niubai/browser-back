@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>产品1</title>
+    <style>
+        header {
+            border-bottom: 1px solid #ccc;
+        }
+        .center {
+            text-align: center;
+        }
+        .leftbtn,.rightbtn{
+            font-size: 16px;
+            float: left;
+            width: 40px;
+            height: 40px;
+            color: #f37937;
+        }
+        .rightbtn {
+            float: right;
+        }
+    </style>
+</head>
+<script src="./browser-back.js"></script>
+<script>
+	indexBrowserBack('prd1');
+</script>
+<body>
+<header>
+    <div class="leftbtn" onclick="history.back()">返回</div>
+    <div class="rightbtn"></div>
+    <div class="center">产品1</div>
+</header>
+<p>这是产品1详情页面</p>
+<a href="./prd1page2.html">进入产品购买</a>
+</body>
+</html>

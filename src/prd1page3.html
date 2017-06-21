@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>index</title>
+    <style>
+        .displayNo {
+            display: none;
+        }
+        header {
+            border-bottom: 1px solid #ccc;
+        }
+        .center {
+            text-align: center;
+        }
+        .leftbtn,.rightbtn{
+            font-size: 16px;
+            float: left;
+            width: 40px;
+            height: 40px;
+            color: #f37937;
+        }
+        .rightbtn {
+            float: right;
+        }
+    </style>
+</head>
+<script src="./browser-back.js"></script>
+
+<script>
+    let letfFun = function () {
+      location.href = './prd1page2.html'
+    };
+    let rightFun = function () {
+	    location.href = './prd1page4.html'
+    };
+
+    let isSec = Math.random() > 0.5;  //也许是异步接口返回
+    normalBrowserBack(isSec ? rightFun : letfFun);
+</script>
+<body>
+<header>
+    <div class="leftbtn" onclick="history.back()">返回</div>
+    <div class="rightbtn" onclick="history.back()">完成</div>
+    <div class="center">购买结果</div>
+</header>
+<p>这是产品1购买结果页面</p>
+<p>Math.random随机的，如果失败可以返回重试</p>
+<div class="sec">
+    <p>恭喜你购买成功</p>
+    <a href="./prd1page4.html">查看购买产品</a>
+</div>
+<div class="fil">
+    <p>购买出错</p><a href="./prd1page2.html">重新购买</a></div>
+</body>
+<script>
+    let leftBtn = document.getElementsByClassName("leftbtn")[0];
+    let rightBtn = document.getElementsByClassName("rightbtn")[0];
+    let secTips = document.getElementsByClassName("sec")[0];
+    let filTips = document.getElementsByClassName("fil")[0];
+    if(isSec) {
+	    leftBtn.classList.add("displayNo");
+	    filTips.classList.add("displayNo");
+    } else {
+    	rightBtn.classList.add("displayNo");
+    	secTips.classList.add("displayNo");
+    }
+</script>
+</html>
