@@ -26,11 +26,17 @@
 			window.sessionStorage.setItem(h, hData);
 		}
 		let backFun = function () {
-			let ua = navigator.userAgent + '';
+			let ua = window.navigator.userAgent.toLowerCase();
 			if (ua.indexOf('AladdinHybrid') !== -1 && ua.indexOf('PAEBank') !== -1) {
 				alert('执行aladdin back');
-			} else if (window.WeixinJSBridge) {
-				window.WeixinJSBridge.call('closeWindow');
+			} else if (ua.match(/MicroMessenger/i) === 'micromessenger') {
+				try { // 防止WeixinJSBridge未加载完成执行返回
+					window.WeixinJSBridge.call('closeWindow');
+				} catch (e) {
+					document.addEventListener('WeixinJSBridgeReady', function () {
+						window.WeixinJSBridge.call('closeWindow');
+					}, false);
+				}
 			} else {
 				window.sessionStorage.removeItem(h);
 				window.history.go(hData - window.history.length);
