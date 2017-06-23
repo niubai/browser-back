@@ -27,9 +27,11 @@
 		}
 		let backFun = function () {
 			let ua = window.navigator.userAgent.toLowerCase();
-			if (ua.indexOf('AladdinHybrid') !== -1 && ua.indexOf('PAEBank') !== -1) {
+			if (+this.hData !== 1) { // 当前页面不为根页面，尝试回到来源页面
+				window.history.go(hData - window.history.length);
+			} else if (ua.indexOf('AladdinHybrid') !== -1 && ua.indexOf('PAEBank') !== -1) {
 				alert('执行aladdin back');
-			} else if (ua.match(/MicroMessenger/i) === 'micromessenger') {
+			} else if (ua.indexOf('micromessenger') !== -1) {
 				try { // 防止WeixinJSBridge未加载完成执行返回
 					window.WeixinJSBridge.call('closeWindow');
 				} catch (e) {
@@ -38,6 +40,7 @@
 					}, false);
 				}
 			} else {
+				// 为根页面，尝试执行浏览器返回，回到浏览器主页，部分手机无效
 				window.sessionStorage.removeItem(h);
 				window.history.go(hData - window.history.length);
 				setTimeout(() => {
