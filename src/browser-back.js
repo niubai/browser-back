@@ -7,7 +7,9 @@
 		if(Object.prototype.toString.call(fun) !== '[object Function]'){
 			throw new Error('fun is not function');
 		}
-		history.pushState({}, '', '');
+		let href = window.location.href;
+		history.replaceState({a: Math.random()}, '', href + '#');
+		history.pushState({a: Math.random()}, '', href);
 		setTimeout(function () { // 防止某些安卓手机初始化执行，导致页面无法跳转问题
 			window.onpopstate = fun;
 		}, 200);
@@ -27,7 +29,8 @@
 		}
 		let backFun = function () {
 			let ua = window.navigator.userAgent.toLowerCase();
-			if (+this.hData !== 1) { // 当前页面不为根页面，尝试回到来源页面
+			window.sessionStorage.removeItem(h);
+			if (+hData !== 1) { // 当前页面不为根页面，尝试回到来源页面
 				window.history.go(hData - window.history.length);
 			} else if (ua.indexOf('AladdinHybrid') !== -1 && ua.indexOf('PAEBank') !== -1) {
 				alert('执行aladdin back');
@@ -41,7 +44,6 @@
 				}
 			} else {
 				// 为根页面，尝试执行浏览器返回，回到浏览器主页，部分手机无效
-				window.sessionStorage.removeItem(h);
 				window.history.go(hData - window.history.length);
 				setTimeout(() => {
 					window.sessionStorage.setItem(h, hData);  // 防止用户继续浏览器页面再回来点击返回问题
@@ -49,7 +51,7 @@
 					alert('您未正确设置入口链接，无法返回', '确定');
 				}, 1000);
 			}
-		}
+		};
 		global.normalBrowserBack(fun || backFun);
 		return fun || backFun;
 

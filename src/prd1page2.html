@@ -29,6 +29,11 @@
     let letfFun = function () {
       location.href = './prd1page1.html'
     };
+    let goThe = function () {
+	    window.onpopstate = null;
+	    window.open('https://www.baidu.com');
+//    	location.href = 'https://www.baidu.com';
+    };
     normalBrowserBack(letfFun);
 </script>
 <body>
@@ -39,5 +44,6 @@
 </header>
 <p>这是产品1购买页面</p>
 <a href="./prd1page3.html">进入产品购买完成结果页面</a>
+<a href="javascript:;" onclick="goThe()">进入三方页面</a>
 </body>
 </html>
